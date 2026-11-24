@@ -31,6 +31,7 @@ The browser subscribes to meter telemetry, device status, and LED reported state
 - `frontend/` — browser dashboard.
 - `esp32/energy_meter.ino` — ESP32 firmware.
 - `docs/EMQX_SETUP.md` — broker and topic configuration.
+- `docs/EMQX_CONNECTION_GUIDE.md` — step-by-step console navigation, MQTT credentials, listeners, and connection checks.
 - `docs/CLOUDFLARE_DEPLOYMENT.md` — HTTPS hosting steps.
 - `docs/SAFETY.md` — electrical safety boundaries.
 
@@ -39,7 +40,7 @@ The browser subscribes to meter telemetry, device status, and LED reported state
 1. Create an EMQX Cloud account and a dedicated deployment.
 2. Enable MQTT over WebSocket Secure (WSS) for browser clients and TLS MQTT for ESP32.
 3. Create separate credentials for the ESP32 and dashboard. Give each identity only the topic permissions it needs.
-4. Configure the broker endpoint, WSS path, ports, usernames and passwords as described in [EMQX setup](docs/EMQX_SETUP.md).
+4. Configure the broker endpoint, WSS path, ports, usernames and passwords as described in [EMQX setup](docs/EMQX_SETUP.md) and the [EMQX connection guide](docs/EMQX_CONNECTION_GUIDE.md).
 5. Do not use a public shared broker for real device control.
 
 The dashboard connection fields are intentionally entered at runtime. Do not put privileged broker credentials in JavaScript, Git, screenshots, or public documentation. Browser credentials can be inspected by the browser user; for a multi-user production deployment, use an authenticated backend to issue short-lived, restricted credentials.
