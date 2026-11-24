@@ -21,7 +21,7 @@
 // ---------- LOCAL CONFIGURATION: replace placeholders ----------
 const char* WIFI_SSID = "YOUR_WIFI_NAME";
 const char* WIFI_PASSWORD = "YOUR_WIFI_PASSWORD";
-const char* MQTT_HOST = "YOUR_EMQX_HOST";
+const char* MQTT_HOST = "f42fe1e0.ala.dedicated.aws.emqxcloud.com";
 const uint16_t MQTT_TLS_PORT = 8883;
 const char* MQTT_USERNAME = "ESP32_DEVICE_USERNAME";
 const char* MQTT_PASSWORD = "ESP32_DEVICE_PASSWORD";
