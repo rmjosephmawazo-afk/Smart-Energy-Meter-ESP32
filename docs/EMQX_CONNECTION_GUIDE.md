@@ -108,3 +108,13 @@ If an API Secret has been exposed, revoke or rotate it in the EMQX console. Stor
 ## Electrical safety
 
 PZEM-004T measures hazardous mains AC. Do not work on exposed or energized mains wiring. Have installation, isolation, enclosure, overcurrent protection, earthing, and verification completed by a qualified electrician or technician. The dashboard and example firmware are not certified protective equipment.
+
+## This project's broker hostname
+
+The user-provided deployment hostname for this project is:
+
+```text
+f42fe1e0.ala.dedicated.aws.emqxcloud.com
+```
+
+Use this exact hostname in the ESP32 `MQTT_HOST` setting. Confirm the active TLS MQTT port, WSS port, and WebSocket path in the deployment console; do not infer these from the hostname.
