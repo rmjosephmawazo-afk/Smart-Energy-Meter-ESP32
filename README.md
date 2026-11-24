@@ -69,7 +69,7 @@ Open `frontend/index.html` in a modern browser or serve the folder using a local
 
 ## 4. Deploy on Cloudflare Pages
 
-Follow [Cloudflare deployment](docs/CLOUDFLARE_DEPLOYMENT.md). Deploy the `frontend` directory as the static site root. Use HTTPS and configure your EMQX WSS endpoint. No private credentials need to be added to the static site.
+Follow [Cloudflare deployment](docs/CLOUDFLARE_DEPLOYMENT.md). The Pages project `smart-energy-meter-esp32` has been created at `https://smart-energy-meter-esp32.pages.dev`. Add the two GitHub Actions secrets described in the deployment guide, then run the deployment workflow to publish the `frontend` directory. Use HTTPS and configure your EMQX WSS endpoint. No EMQX passwords need to be added to the static site.
 
 ## MQTT topic contract
 
