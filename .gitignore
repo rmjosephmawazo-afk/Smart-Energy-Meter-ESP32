@@ -1,0 +1,9 @@
+# Local secrets and generated files
+.env
+.env.*
+!.env.example
+secrets.h
+*.pem
+*.key
+.DS_Store
+.vscode/

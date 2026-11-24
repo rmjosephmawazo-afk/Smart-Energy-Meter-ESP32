@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>Smart Energy Meter | ESP32</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">⚡</span><div><strong>SMART ENERGY METER</strong><small>ESP32 · PZEM-004T · EMQX</small></div></div>
+    <div class="status-wrap"><span id="brokerDot" class="dot"></span><span id="brokerStatus">Disconnected</span><span class="divider"></span><span id="deviceDot" class="dot"></span><span id="deviceStatus">Device offline</span></div>
+  </header>
+  <main class="container">
+    <section class="intro">
+      <div><p class="eyebrow">LIVE MONITORING</p><h1>Energy dashboard</h1><p class="muted">Real-time electrical measurements and remote indicator control.</p></div>
+      <div class="updated">Last update <strong id="lastUpdate">—</strong></div>
+    </section>
+
+    <section class="panel connection">
+      <div class="section-head"><div><h2>Broker connection</h2><p class="muted">Use your EMQX Cloud secure WebSocket endpoint.</p></div><span class="tag">MQTT over WSS</span></div>
+      <div class="connect-grid">
+        <label>WSS broker URL<input id="brokerUrl" type="url" placeholder="wss://your-deployment:8084/mqtt" autocomplete="url"></label>
+        <label>Username<input id="mqttUser" type="text" placeholder="Dashboard username" autocomplete="username"></label>
+        <label>Password<input id="mqttPass" type="password" placeholder="Dashboard password" autocomplete="current-password"></label>
+        <div class="connect-actions"><button id="connectBtn" class="primary">Connect</button><button id="disconnectBtn" class="secondary" disabled>Disconnect</button></div>
+      </div>
+      <p id="connectionMessage" class="hint" role="status">Credentials are used for this session only and are not saved.</p>
+    </section>
+
+    <section class="section-head metrics-head"><div><p class="eyebrow">ELECTRICAL PARAMETERS</p><h2>Live measurements</h2></div><span class="tag">ESP32 telemetry</span></section>
+    <section class="metrics">
+      <article class="metric"><div class="metric-label"><span class="metric-icon">⌁</span> Voltage</div><div class="metric-value"><span id="voltage">—</span><small>V</small></div><p class="metric-note">AC voltage</p></article>
+      <article class="metric"><div class="metric-label"><span class="metric-icon">↯</span> Current</div><div class="metric-value"><span id="current">—</span><small>A</small></div><p class="metric-note">Load current</p></article>
+      <article class="metric"><div class="metric-label"><span class="metric-icon">⚡</span> Active power</div><div class="metric-value"><span id="power">—</span><small>W</small></div><p class="metric-note">Instantaneous power</p></article>
+      <article class="metric"><div class="metric-label"><span class="metric-icon">◷</span> Energy</div><div class="metric-value"><span id="energy">—</span><small>kWh</small></div><p class="metric-note">Accumulated meter energy</p></article>
+      <article class="metric compact"><div class="metric-label">Frequency</div><div class="metric-value"><span id="frequency">—</span><small>Hz</small></div></article>
+      <article class="metric compact"><div class="metric-label">Power factor</div><div class="metric-value"><span id="pf">—</span></div></article>
+    </section>
+
+    <section class="panel controls">
+      <div class="section-head"><div><p class="eyebrow">REMOTE OUTPUTS</p><h2>LED control</h2><p class="muted">The state shown below comes from the ESP32 acknowledgement.</p></div><span class="tag">3 outputs</span></div>
+      <div class="led-grid">
+        <article class="led-card" data-led="red"><div class="led-title"><span class="led-indicator red"></span><h3>Red LED</h3></div><p class="led-state" id="redState">Unknown</p><button class="led-button" data-led-button="red" disabled>Turn ON</button></article>
+        <article class="led-card" data-led="blue"><div class="led-title"><span class="led-indicator blue"></span><h3>Blue LED</h3></div><p class="led-state" id="blueState">Unknown</p><button class="led-button" data-led-button="blue" disabled>Turn ON</button></article>
+        <article class="led-card" data-led="green"><div class="led-title"><span class="led-indicator green"></span><h3>Green LED</h3></div><p class="led-state" id="greenState">Unknown</p><button class="led-button" data-led-button="green" disabled>Turn ON</button></article>
+      </div>
+      <p id="commandMessage" class="hint" role="status">Connect to the broker and wait for the ESP32 state report before controlling outputs.</p>
+    </section>
+    <footer><span>Smart Energy Meter · ESP32</span><span>Use authenticated broker access and secure electrical installation.</span></footer>
+  </main>
+</body>
+</html>
