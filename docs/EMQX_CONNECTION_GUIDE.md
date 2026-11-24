@@ -21,9 +21,9 @@ You need two different MQTT transports:
 | ESP32 firmware | MQTT over TLS | 8883 | Hostname and TLS port |
 | Browser dashboard | MQTT over WebSocket Secure (WSS) | 8084 | Hostname, secure WebSocket port, and exact WebSocket path |
 
-**Confirmed for this project's deployment from the user's EMQX Overview screenshot:** MQTT/TCP `1883`, MQTT/TLS `8883`, WebSocket `8083`, and WebSocket/TLS `8084`. The broker hostname is `f42fe1e0.ala.dedicated.aws.emqxcloud.com`. The screenshot does not show the WebSocket path, so copy that path from the EMQX Connection Guide or the deployment's client connection instructions; do not guess `/mqtt`.
+**Confirmed for this project's deployment from the user's EMQX Overview screenshot:** MQTT/TCP `1883`, MQTT/TLS `8883`, WebSocket `8083`, and WebSocket/TLS `8084`. The broker hostname is `f42fe1e0.ala.dedicated.aws.emqxcloud.com`. EMQX's official Cloud JavaScript connection guide specifies `/mqtt` as the broker WebSocket path. Therefore the dashboard endpoint for this deployment is `wss://f42fe1e0.ala.dedicated.aws.emqxcloud.com:8084/mqtt`.
 
-The browser field in `frontend/index.html` expects a complete URL beginning with `wss://`. For this deployment, the confirmed beginning is `wss://f42fe1e0.ala.dedicated.aws.emqxcloud.com:8084`; append the exact WebSocket path shown in EMQX. The screenshot confirms the port but not the path. The general format is:
+The browser field in `frontend/index.html` expects a complete URL beginning with `wss://`. For this deployment, the confirmed beginning is `wss://f42fe1e0.ala.dedicated.aws.emqxcloud.com:8084`; append the exact WebSocket path shown in EMQX. The confirmed endpoint is `wss://f42fe1e0.ala.dedicated.aws.emqxcloud.com:8084/mqtt`. The general format is:
 
 ```text
 wss://YOUR_DEPLOYMENT_HOST:YOUR_WSS_PORT/YOUR_WEBSOCKET_PATH
@@ -117,4 +117,4 @@ The user-provided deployment hostname for this project is:
 f42fe1e0.ala.dedicated.aws.emqxcloud.com
 ```
 
-Use this exact hostname in the ESP32 `MQTT_HOST` setting. Confirmed listener ports from the deployment Overview screenshot: MQTT/TCP `1883`, MQTT/TLS `8883`, WebSocket `8083`, and WebSocket/TLS `8084`. The WebSocket path still needs to be copied from EMQX's client connection instructions. The ESP32 firmware uses the confirmed MQTT/TLS port `8883`.
+Use this exact hostname in the ESP32 `MQTT_HOST` setting. Confirmed listener ports from the deployment Overview screenshot: MQTT/TCP `1883`, MQTT/TLS `8883`, WebSocket `8083`, and WebSocket/TLS `8084`. The WebSocket path is `/mqtt`, following EMQX Cloud's official JavaScript SDK connection instructions. The ESP32 firmware uses the confirmed MQTT/TLS port `8883`.
